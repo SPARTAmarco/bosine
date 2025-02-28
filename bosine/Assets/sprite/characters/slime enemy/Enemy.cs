@@ -9,19 +9,19 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if (isDead) return; // Evita di ricevere danni dopo la morte
-
+        {
         health -= damage;
         animator.SetTrigger("Hurt"); // Attiva l'animazione di danno
-
+        }
         if (health <= 0)
         {
             Die();
-        }
+        } 
     }
 
     void Die()
     {
-        if (isDead) return; // Evita che la funzione venga chiamata più volte
+        if (isDead) {return;} // Evita che la funzione venga chiamata più volte
         isDead = true;
 
         animator.SetTrigger("Die"); // Attiva animazione di morte
