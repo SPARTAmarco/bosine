@@ -1,45 +1,57 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
-public class HeartUI : MonoBehaviour
+public class HearthUI : MonoBehaviour
 {
-    public int maxHealth = 6; // 3 cuori interi (ogni cuore vale 2)
+    public int maxHealth = 6; // 3 cuori = 6 HP
     public int currentHealth;
 
     public Image[] hearts; // Array di immagini dei cuori
-    public Sprite fullHeart;
-    public Sprite halfHeart;
-    public Sprite emptyHeart;
+    public Sprite fullHeart; 
+    public Sprite halfHeart; 
+    public Sprite emptyHeart; 
 
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = maxHealth; // Iniziamo con vita piena
         UpdateHearts();
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        if (currentHealth < 0)
+            currentHealth = 0;
+
         UpdateHearts();
     }
 
-    public void UpdateHearts()
+    public void Heal(int amount)
+    {
+        currentHealth += amount;
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+
+        UpdateHearts();
+    }
+
+    void UpdateHearts()
     {
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i * 2 + 1 < currentHealth)
+            int heartValue = (i + 1) * 2;
+
+            if (currentHealth >= heartValue)
             {
-                hearts[i].sprite = fullHeart;
+                hearts[i].sprite = fullHeart;  // Cuore pieno
             }
-            else if (i * 2 < currentHealth)
+            else if (currentHealth == heartValue - 1)
             {
-                hearts[i].sprite = halfHeart;
+                hearts[i].sprite = halfHeart;  // Mezzo cuore
             }
             else
             {
-                hearts[i].sprite = emptyHeart;
+                hearts[i].sprite = emptyHeart; // Cuore vuoto
             }
         }
     }
