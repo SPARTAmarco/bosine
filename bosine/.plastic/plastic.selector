@@ -1,4 +1,0 @@
-repository "bosine 2025-02-21_23-17-16/bosine@6872313480750@cloud"
-  path "/"
-    br "/main"
-    co "/main"

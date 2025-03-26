@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "bosine.sln"
+    "dotnet.defaultSolution": "bosine.sln",
+    "C_Cpp.default.compilerPath": "c:\\Dev-Cpp\\Dev-Cpp\\MinGW64\\bin\\g++.exe"
 }
